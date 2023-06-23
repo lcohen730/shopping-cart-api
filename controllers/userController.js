@@ -1,3 +1,4 @@
+require('dotenv').config()
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -5,7 +6,7 @@ const jwt = require('jsonwebtoken');
 exports.auth = async (req, res, next) => {
     try {
         const token = req.header('Authorization').replace('Bearer ', '');
-        const data = jwt.verify(token, 'souvenir');
+        const data = jwt.verify(token, process.env.SECRET);
         const user = await User.findOne({ _id: data._id });
         if (!user) {
             throw new Error()
@@ -22,9 +23,10 @@ exports.listUsers = async (req, res) => {
     try {
         const foundUsers = await User.find({});
         // res.render('users/Index', {
-        res.render('users', {    
-            users: foundUsers
-        })
+        // res.render('users', {    
+        //     users: foundUsers
+        // })
+        res.json(foundUsers)
     }
     catch (error) {
         res.status(400).send({ message: error.message })
@@ -43,13 +45,13 @@ exports.createUser = async (req, res) => {
         res.json({ user, token })
     }
     catch (error) {
-        res.status(400).json({})
+        res.status(400).json({ message: error.message })
     }
 }
 
 exports.loginUser = async (req, res) => {
     // res.render('users/Login')
-    res.render('users')
+    // res.json('users')
     try {
         const user = await User.findOne({ email: req.body.email });
         if (!user || !await bcrypt.compare(req.body.password, user.password)) {
@@ -69,9 +71,10 @@ exports.showUser = async (req, res) => {
     try {
         const foundUser = await User.findOne({_id: req.params.id})
         // res.render('users/Show', {
-        res.render('users', {
-            user: foundUser
-       })
+        // res.render('users', {
+        //     user: foundUser
+        // })
+        res.json(foundUser)
     }
     catch (error) {
         res.status(400).send({ message: error.message })
@@ -82,9 +85,10 @@ exports.editUser = async (req, res) => {
     try {
         const foundUser = await User.findOne({_id: req.params.id})
         // res.render('users/Edit', {
-        res.render('users', {
-            user: foundUser
-        })
+        // res.render('users', {
+        //     user: foundUser
+        // })
+        res.json(foundUser)
     }
     catch (error) {
         res.status(400).send({ message: error.message })
@@ -110,6 +114,9 @@ exports.deleteUser = async (req, res) => {
             .then(() => {
                 res.redirect('/users')
             })
+        // await req.user.deleteOne()
+        // res.sendStatus(204)
+        // could do above two lines instead of the earlier four lines
     }
     catch (error) {
         res.status(400).json({ message: error.message })

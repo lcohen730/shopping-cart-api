@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const Item = require('../models/item');
+// const Cart = require('../models/Cart');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -19,7 +20,7 @@ exports.auth = async (req, res, next) => {
     }
 }
 
-exports.listItems = async (req, res) => {
+exports.listCartItems = async (req, res) => {
     try {
         const foundItems = await Item.find({});
         // res.render('items/Index', {
@@ -33,32 +34,6 @@ exports.listItems = async (req, res) => {
         res.status(400).json({ message: error.message })
     }
 }
-
-// idea for listing all items within a given category
-/* exports.listItems = async (req, res) => {
-    try {
-        const foundItems = await Item.find({ type: req.params.type });
-        // res.render('items/Index', {
-        // res.render('items', {    
-        //     items: foundItems
-        // })
-        res.json(foundItems)
-    }
-    catch (error) {
-        // res.status(400).send({ message: error.message })
-        res.status(400).json({ message: error.message })
-    }
-} */
-
-// list cart items? if cart controller is not needed...
-// list cellos
-// list violas
-// list basses
-// list violins
-// list bows
-// list rosins
-// list cases
-// list others
 
 /* exports.newItem = (req, res) => {
     res.render('items/New')
@@ -128,21 +103,6 @@ exports.deleteItem = async (req, res) => {
             })
     }
     catch (error) {
-        res.status(400).json({ message: error.message })
-    }
-}
-
-exports.addToCart = async (req, res) => {
-    try {
-        const foundItem = await Item.findOne({_id: req.params.id})
-        // res.render('items/Show', {
-        // res.render('items', {
-        //     item: foundItem
-        // })
-        res.json(foundItem)
-    }
-    catch (error) {
-        // res.status(400).send({ message: error.message })
         res.status(400).json({ message: error.message })
     }
 }

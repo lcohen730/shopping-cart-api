@@ -1,14 +1,16 @@
+require('dotenv').config()
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    phone: String,
-    password: String,
-    address: String,
-    master: Boolean
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    phone: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    address: { type: String, required: true },
+    master: Boolean,
+    cart: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item'}]
 })
 
 userSchema.pre('save', async function(next) {
@@ -19,7 +21,7 @@ userSchema.pre('save', async function(next) {
 })
 
 userSchema.methods.generateAuthToken = async function() {
-    const token = jwt.sign({ _id: this._id }, 'souvenir')
+    const token = jwt.sign({ _id: this._id }, process.env.SECRET)
     return token
 }
 
