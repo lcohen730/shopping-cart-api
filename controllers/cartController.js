@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 exports.auth = async (req, res, next) => {
     try {
         const token = req.header('Authorization').replace('Bearer ', '');
-        const data = jwt.verify(token, 'souvenir');
+        const data = jwt.verify(token, process.env.SECRET);
         const user = await User.findOne({ _id: data._id });
         if (!user) {
             throw new Error()
@@ -23,11 +23,13 @@ exports.auth = async (req, res, next) => {
 exports.listCartItems = async (req, res) => {
     try {
         const foundItems = await Item.find({});
+        let subTotal = 0
+        foundItems.forEach(item => subTotal += item.price)
         // res.render('items/Index', {
         // res.render('items', {    
         //     items: foundItems
         // })
-        res.json(foundItems)
+        res.json({ foundItems, subTotal })
     }
     catch (error) {
         // res.status(400).send({ message: error.message })

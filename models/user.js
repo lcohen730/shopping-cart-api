@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     address: { type: String, required: true },
     master: Boolean,
-    cart: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item'}]
+    cart: { type: mongoose.Schema.Types.ObjectId, ref: 'Cart', default: null }
 })
 
 userSchema.pre('save', async function(next) {
