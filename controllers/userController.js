@@ -58,6 +58,8 @@ exports.loginUser = async (req, res) => {
             res.status(400).send('Invalid login credentials')
         }
         else {
+            user.loggedIn = true
+            await user.save()
             const token = await user.generateAuthToken();
             res.json({ user, token })
         }
@@ -122,3 +124,13 @@ exports.deleteUser = async (req, res) => {
         res.status(400).json({ message: error.message })
     }
 }
+
+exports.logoutUser = async (req, res) => {
+    try {
+        req.user.loggedIn = false
+        await req.user.save()
+        res.json(req.user)
+    } catch(error){
+      res.status(400).json({ message: error.message })
+    }
+  }
