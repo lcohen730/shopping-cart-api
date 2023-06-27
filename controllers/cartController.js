@@ -16,6 +16,7 @@ exports.listCartItems = async (req, res) => {
         //     items: foundItems
         // })
         res.json({ foundCart, subTotal }) */
+        console.log(req.user)
         res.json(req.user.cart)
     }
     catch (error) {
