@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const itemSchema = new mongoose.Schema({
-    name: String,
-    price: Number,
-    type: String,
+    name: { type: String, required: true },
+    price: { type: Number, required: true },
+    type: { type: String, required: true },
     quantity: { type: Number, default: 1 }
 })
 

@@ -121,12 +121,28 @@ exports.addToCart = async (req, res) => {
         const foundItem = await Item.findOne({_id: req.params.id})
         if (req.user.cart) {
             // console.log(req.user)
-            req.user.cart.items.addToSet({ _id: foundItem._id })
+            // req.user.cart.items.addToSet({ _id: foundItem._id })
+            req.user.cart.items.addToSet({ 
+                _id: foundItem._id,
+                name: foundItem.name,
+                price: foundItem.price,
+                type: foundItem.type,
+                quantity: foundItem.quantity
+            })
+            // req.user.cart.items.addToSet({ _id: foundItem._id, name: foundItem.name })
         }
         else {
             // console.log('cart doesnt exist')
             req.user.cart = await Cart.create({
-                items: [{_id: foundItem._id }],
+                // items: [{_id: foundItem._id }],
+                items: [{
+                    _id: foundItem._id,
+                    name: foundItem.name,
+                    price: foundItem.price,
+                    type: foundItem.type,
+                    quantity: foundItem.quantity
+                }],
+                // items: [{ _id: foundItem._id, name: foundItem.name }],
                 user: req.body.user
             })
         }
@@ -135,8 +151,8 @@ exports.addToCart = async (req, res) => {
             /* .then(() => {
                 res.redirect('/cart/req.user.cart.id')
             }) */
-        console.log(req.user)
-        res.json(req.user.cart)
+        console.log(req.user.cart.items)
+        res.json(req.user.cart.items)
     }
     catch (error) {
         // res.status(400).send({ message: error.message })

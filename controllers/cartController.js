@@ -7,21 +7,26 @@ const { showItem } = require('./itemController');
 exports.listCartItems = async (req, res) => {
     try {
         // req.body.user = req.user._id
-        /* console.log(req.user.cart)
+        // console.log(req.user.cart)
         // const foundItems = await Item.find({});
         // const foundCart = await Cart.findOne({_id: req.params.id})
-        const cartItems = req.user.cart.items
-        console.log(cartItems)
-        let subTotal = 0
-        // foundCart.items.forEach(item => subTotal += item.price)
-        cartItems.forEach(item => subTotal += item.price) */
-        // res.render('items/Index', {
-        // res.render('items', {    
-        //     items: foundItems
-        // })
-        // res.json({ cartItems, subTotal })
-        // console.log(req.user)
-        res.json(req.user.cart)
+        if (req.user.cart) {
+            const cartItems = req.user.cart.items
+            // console.log(cartItems)
+            let subTotal = 0
+            // foundCart.items.forEach(item => subTotal += item.price)
+            cartItems.forEach(item => subTotal += item.price)
+            // res.render('items/Index', {
+            // res.render('items', {    
+            //     items: foundItems
+            // })
+            res.json({ cartItems, subTotal })
+            // console.log(req.user)
+            // res.json(req.user.cart)
+        }
+        else {
+            res.json('Your cart is empty. Feed it, it\'s hungry.')
+        }
     }
     catch (error) {
         // res.status(400).send({ message: error.message })
