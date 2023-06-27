@@ -1,22 +1,7 @@
 const User = require('../models/user');
 const Item = require('../models/item');
+const Cart = require('../models/cart');
 const jwt = require('jsonwebtoken');
-
-exports.auth = async (req, res, next) => {
-    try {
-        const token = req.header('Authorization').replace('Bearer ', '');
-        const data = jwt.verify(token, process.env.SECRET);
-        const user = await User.findOne({ _id: data._id });
-        if (!user) {
-            throw new Error()
-        }
-        req.user = user
-        next();
-    }
-    catch (error) {
-        res.status(401).send('User not authorized for this action.')
-    }
-}
 
 exports.listItems = async (req, res) => {
     try {
@@ -130,17 +115,29 @@ exports.deleteItem = async (req, res) => {
     }
 }
 
-/* exports.addToCart = async (req, res) => {
+exports.addToCart = async (req, res) => {
     try {
+        req.body.user = req.user._id
         const foundItem = await Item.findOne({_id: req.params.id})
-        // res.render('items/Show', {
-        // res.render('items', {
-        //     item: foundItem
-        // })
-        res.json(foundItem)
+        if (req.user.cart) {
+            // console.log(req.user)
+            req.user.cart.items.addToSet({ _id: foundItem._id })
+        }
+        else {
+            // console.log('cart doesnt exist')
+            req.user.cart = await Cart.create({
+                items: [{_id: foundItem._id }],
+                user: req.body.user
+            })
+        }
+        await req.user.save()
+            /* .then(() => {
+                res.redirect('/cart/req.user.cart.id')
+            }) */
+        res.json(req.user.cart)
     }
     catch (error) {
         // res.status(400).send({ message: error.message })
         res.status(400).json({ message: error.message })
     }
-} */
+}

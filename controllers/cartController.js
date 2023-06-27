@@ -1,35 +1,22 @@
 const User = require('../models/user');
 const Item = require('../models/item');
-// const Cart = require('../models/Cart');
-const bcrypt = require('bcrypt');
+const Cart = require('../models/cart');
 const jwt = require('jsonwebtoken');
-
-exports.auth = async (req, res, next) => {
-    try {
-        const token = req.header('Authorization').replace('Bearer ', '');
-        const data = jwt.verify(token, process.env.SECRET);
-        const user = await User.findOne({ _id: data._id });
-        if (!user) {
-            throw new Error()
-        }
-        req.user = user
-        next();
-    }
-    catch (error) {
-        res.status(401).send('User not authorized for this action.')
-    }
-}
+const { showItem } = require('./itemController');
 
 exports.listCartItems = async (req, res) => {
     try {
-        const foundItems = await Item.find({});
+        /* // const foundItems = await Item.find({});
+        // const foundItems = await Item.find({});
+        const foundCart = await Cart.findOne({_id: req.params.id})
         let subTotal = 0
-        foundItems.forEach(item => subTotal += item.price)
+        foundCart.items.forEach(item => subTotal += item.price)
         // res.render('items/Index', {
         // res.render('items', {    
         //     items: foundItems
         // })
-        res.json({ foundItems, subTotal })
+        res.json({ foundCart, subTotal }) */
+        res.json(req.user.cart)
     }
     catch (error) {
         // res.status(400).send({ message: error.message })
@@ -37,40 +24,7 @@ exports.listCartItems = async (req, res) => {
     }
 }
 
-/* exports.newItem = (req, res) => {
-    res.render('items/New')
-} */
-
-exports.createItem = async (req, res) => {
-    try {
-        // req.body.user = req.user._id
-        /* const item = new Item(req.body);
-        await item.save() */ // this section is only needed for users because you are waiting for password to be hashed
-        const item = await Item.create(req.body)
-        const token = await item.generateAuthToken();
-        res.json(item)
-    }
-    catch (error) {
-        res.status(400).json({})
-    }
-}
-
-exports.showItem = async (req, res) => {
-    try {
-        const foundItem = await Item.findOne({_id: req.params.id})
-        // res.render('items/Show', {
-        // res.render('items', {
-        //     item: foundItem
-        // })
-        res.json(foundItem)
-    }
-    catch (error) {
-        // res.status(400).send({ message: error.message })
-        res.status(400).json({ message: error.message })
-    }
-}
-
-exports.editItem = async (req, res) => {
+/* exports.editItem = async (req, res) => {
     try {
         const foundItem = await Item.findOne({_id: req.params.id})
         // res.render('items/Edit', {
@@ -82,7 +36,7 @@ exports.editItem = async (req, res) => {
     catch (error) {
         res.status(400).send({ message: error.message })
     }
-}
+} */
 
 exports.updateItem = async (req, res) => {
     try {
