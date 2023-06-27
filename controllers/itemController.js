@@ -130,10 +130,12 @@ exports.addToCart = async (req, res) => {
                 user: req.body.user
             })
         }
+        await req.user.save()
         await req.user.cart.save()
             /* .then(() => {
                 res.redirect('/cart/req.user.cart.id')
             }) */
+        console.log(req.user)
         res.json(req.user.cart)
     }
     catch (error) {

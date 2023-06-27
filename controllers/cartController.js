@@ -6,17 +6,21 @@ const { showItem } = require('./itemController');
 
 exports.listCartItems = async (req, res) => {
     try {
-        /* // const foundItems = await Item.find({});
+        // req.body.user = req.user._id
+        /* console.log(req.user.cart)
         // const foundItems = await Item.find({});
-        const foundCart = await Cart.findOne({_id: req.params.id})
+        // const foundCart = await Cart.findOne({_id: req.params.id})
+        const cartItems = req.user.cart.items
+        console.log(cartItems)
         let subTotal = 0
-        foundCart.items.forEach(item => subTotal += item.price)
+        // foundCart.items.forEach(item => subTotal += item.price)
+        cartItems.forEach(item => subTotal += item.price) */
         // res.render('items/Index', {
         // res.render('items', {    
         //     items: foundItems
         // })
-        res.json({ foundCart, subTotal }) */
-        console.log(req.user)
+        // res.json({ cartItems, subTotal })
+        // console.log(req.user)
         res.json(req.user.cart)
     }
     catch (error) {
