@@ -15,7 +15,7 @@ exports.listCartItems = async (req, res) => {
             // console.log(cartItems)
             let subTotal = 0
             // foundCart.items.forEach(item => subTotal += item.price)
-            cartItems.forEach(item => subTotal += item.price)
+            cartItems.forEach(item => subTotal += item.price * item.quantity)
             // res.render('items/Index', {
             // res.render('items', {    
             //     items: foundItems
@@ -50,14 +50,43 @@ exports.listCartItems = async (req, res) => {
 
 exports.updateItem = async (req, res) => {
     try {
+        req.body.user = req.user._id
         const updates = Object.keys(req.body)
-        const item = await Item.findOne({ _id: req.params.id })
-        updates.forEach(update => item[update] = req.body[update])
-        await item.save()
-        res.json(item)
+        const itemId = await Item.findOne({ _id: req.params.id })
+        const cartItem = req.user.cart.items
+        console.log(item)
+        updates.forEach(update => {
+            /* if (update = 'quantity') {
+                item[update] = req.body[update]
+                req.user.cart.item[update] = req.body[update]
+            } */
+            console.log(req.user.cart.item[update])
+            console.log(update)
+            console.log(item[update])
+            console.log(req.body[update])
+            /* else {
+                res.status(400).json('Bad request. Only quantity can be changed for an item in cart.')
+            } */
+        })
+        // await item.save()
+        // res.json(item)
     }
+    /* req.body.user = req.user._id
+        const foundItem = await Item.findOne({_id: req.params.id})
+        if (req.user.cart) {
+            // console.log(req.user)
+            // req.user.cart.items.addToSet({ _id: foundItem._id })
+            req.user.cart.items.addToSet({ 
+                _id: foundItem._id,
+                name: foundItem.name,
+                price: foundItem.price,
+                type: foundItem.type,
+                quantity: 1
+            })
+            // req.user.cart.items.addToSet({ _id: foundItem._id, name: foundItem.name })
+        } */
     catch (error) {
-        res.status(400).json({ message: error.message })
+        res.status(400).json('Bad request. Only quantity can be changed for an item in cart.')
     }
 }
 

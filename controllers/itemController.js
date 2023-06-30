@@ -127,7 +127,7 @@ exports.addToCart = async (req, res) => {
                 name: foundItem.name,
                 price: foundItem.price,
                 type: foundItem.type,
-                quantity: foundItem.quantity
+                quantity: 1
             })
             // req.user.cart.items.addToSet({ _id: foundItem._id, name: foundItem.name })
         }
@@ -140,7 +140,7 @@ exports.addToCart = async (req, res) => {
                     name: foundItem.name,
                     price: foundItem.price,
                     type: foundItem.type,
-                    quantity: foundItem.quantity
+                    quantity: 1
                 }],
                 // items: [{ _id: foundItem._id, name: foundItem.name }],
                 user: req.body.user

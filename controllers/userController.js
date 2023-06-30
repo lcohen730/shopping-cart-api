@@ -83,7 +83,7 @@ exports.showUser = async (req, res) => {
     }
 }
 
-exports.editUser = async (req, res) => {
+/* exports.editUser = async (req, res) => {
     try {
         const foundUser = await User.findOne({_id: req.params.id})
         // res.render('users/Edit', {
@@ -95,7 +95,7 @@ exports.editUser = async (req, res) => {
     catch (error) {
         res.status(400).send({ message: error.message })
     }
-}
+} */
 
 exports.updateUser = async (req, res) => {
     try {
