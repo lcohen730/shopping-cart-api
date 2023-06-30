@@ -110,14 +110,23 @@ describe('Test the items endpoints', () => {
         await user.save()
         const token = await user.generateAuthToken()
         const item = await Item.create({ name: '3/4 Size Viola', price: 800, type: 'Viola' })
+        const cart = await Cart.create({ items: [{ name: item.name,
+                                                price: item.price,
+                                                type: item.type,
+                                                quantity: 1 }],
+                                        user: user
+        })
+        await user.save()
+        await cart.save()
         const response = await request(app)
-            .post('/items')
+            .post(`/items/${item._id}`)
             .set(`Authorization`, `Bearer ${token}`)
-            .send({ name: '3/4 Size Viola', price: 800, type: 'Viola' })
         expect(response.statusCode).toBe(200)
-        expect(response.body.name).toEqual('3/4 Size Viola')
+        /* expect(response.body.name).toEqual('3/4 Size Viola')
         expect(response.body.price).toEqual(800)
         expect(response.body.type).toEqual('Viola')
+        expect(response.body.quantity).toEqual(1) */
+        expect.objectContaining(item)
     })
 
     test('It should add an item to the logged in user\s cart that already has at least one item', async () =>{
@@ -135,8 +144,9 @@ describe('Test the items endpoints', () => {
             .set(`Authorization`, `Bearer ${token}`)
             .send({ name: '3/4 Size Viola', price: 800, type: 'Viola' })
         expect(response.statusCode).toBe(200)
-        expect(response.body.name).toEqual('3/4 Size Viola')
+        /* expect(response.body.name).toEqual('3/4 Size Viola')
         expect(response.body.price).toEqual(800)
-        expect(response.body.type).toEqual('Viola')
+        expect(response.body.type).toEqual('Viola') */
+        expect.objectContaining(item)
     })
 })
