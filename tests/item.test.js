@@ -130,19 +130,26 @@ describe('Test the items endpoints', () => {
     })
 
     test('It should add an item to the logged in user\s cart that already has at least one item', async () =>{
-        const user = new User({ name: 'Franck',
-                                email: 'franck@music.com',
-                                phone: '300-400-5000',
+        const user = new User({ name: 'Glass',
+                                email: 'glass@music.com',
+                                phone: '400-500-6000',
                                 password: 'classical',
-                                address: '1 Sonata Drive',
+                                address: '1 Mishima Drive',
                                 loggedIn: true })
         await user.save()
         const token = await user.generateAuthToken()
-        const item = await Item.create({ name: '3/4 Size Viola', price: 800, type: 'Viola' })
+        const cart = await Cart.create({ items: [{ name: '3/4 Size Viola',
+                                    price: 800,
+                                    type: 'Viola',
+                                    quantity: 1 }],
+                            user: user
+})
+        await user.save()
+        await cart.save()
+        const item = await Item.create({ name: 'Redrum Rosin', price: 40, type: 'Rosin' })
         const response = await request(app)
-            .post('/items')
+            .post(`/items/${item._id}`)
             .set(`Authorization`, `Bearer ${token}`)
-            .send({ name: '3/4 Size Viola', price: 800, type: 'Viola' })
         expect(response.statusCode).toBe(200)
         /* expect(response.body.name).toEqual('3/4 Size Viola')
         expect(response.body.price).toEqual(800)
