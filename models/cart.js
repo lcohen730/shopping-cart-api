@@ -5,6 +5,7 @@ const cartSchema = new mongoose.Schema({
             name: { type: mongoose.Schema.Types.String, ref: 'Item' },
             price: { type: mongoose.Schema.Types.Number, ref: 'Item' },
             type: { type: mongoose.Schema.Types.String, ref: 'Item' },
+            // cartItem: { type: mongoose.Schema.Types.Boolean, ref: 'Item' },
             quantity: { type: mongoose.Schema.Types.Number, ref: 'Item' }
     }],
     subTotal: Number,

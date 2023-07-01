@@ -146,6 +146,28 @@ exports.addToCart = async (req, res) => {
                 user: req.body.user
             })
         }
+        /* const cartItem = new Item({ name: foundItem.name,
+                                    price: foundItem.price,
+                                    type: foundItem.type,
+                                    cartItem: true,
+                                    quantity: 1
+        });
+        await cartItem.save()
+        if (req.user.cart) {
+            // console.log(req.user)
+            // req.user.cart.items.addToSet({ _id: foundItem._id })
+            req.user.cart.items.addToSet(cartItem)
+            // req.user.cart.items.addToSet({ _id: foundItem._id, name: foundItem.name })
+        }
+        else {
+            // console.log('cart doesnt exist')
+            req.user.cart = await Cart.create({
+                // items: [{_id: foundItem._id }],
+                items: [cartItem],
+                // items: [{ _id: foundItem._id, name: foundItem.name }],
+                user: req.body.user
+            })
+        } */
         await req.user.save()
         await req.user.cart.save()
             /* .then(() => {

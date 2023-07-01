@@ -52,24 +52,24 @@ exports.updateItem = async (req, res) => {
     try {
         req.body.user = req.user._id
         const updates = Object.keys(req.body)
-        const itemId = await Item.findOne({ _id: req.params.id })
-        const cartItem = req.user.cart.items
-        console.log(item)
+        // const item = await Item.findOne({ _id: req.params.id })
+        const item = await req.user.cart.items.find(item => item._id == req.params.id)
         updates.forEach(update => {
-            /* if (update = 'quantity') {
+            if (update = 'quantity') {
                 item[update] = req.body[update]
-                req.user.cart.item[update] = req.body[update]
-            } */
-            console.log(req.user.cart.item[update])
-            console.log(update)
-            console.log(item[update])
-            console.log(req.body[update])
-            /* else {
+                // req.user.cart.items[update] = req.body[update]
+            }
+            // console.log(req.user.cart.item[update])
+            // console.log(update)
+            // console.log(item[update])
+            // console.log(req.body[update])
+            else {
                 res.status(400).json('Bad request. Only quantity can be changed for an item in cart.')
-            } */
+            }
         })
-        // await item.save()
-        // res.json(item)
+        // await req.user.save()
+        await req.user.cart.save()
+        res.json(req.user.cart.items)
     }
     /* req.body.user = req.user._id
         const foundItem = await Item.findOne({_id: req.params.id})
