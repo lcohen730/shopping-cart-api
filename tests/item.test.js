@@ -110,14 +110,6 @@ describe('Test the items endpoints', () => {
         await user.save()
         const token = await user.generateAuthToken()
         const item = await Item.create({ name: '3/4 Size Viola', price: 800, type: 'Viola' })
-        const cart = await Cart.create({ items: [{ name: item.name,
-                                                price: item.price,
-                                                type: item.type,
-                                                quantity: 1 }],
-                                        user: user
-        })
-        await user.save()
-        await cart.save()
         const response = await request(app)
             .post(`/items/${item._id}`)
             .set(`Authorization`, `Bearer ${token}`)
@@ -139,11 +131,11 @@ describe('Test the items endpoints', () => {
         await user.save()
         const token = await user.generateAuthToken()
         const cart = await Cart.create({ items: [{ name: '3/4 Size Viola',
-                                    price: 800,
-                                    type: 'Viola',
-                                    quantity: 1 }],
-                            user: user
-})
+                                                price: 800,
+                                                type: 'Viola',
+                                                quantity: 1 }],
+                                        user: user
+        })
         await user.save()
         await cart.save()
         const item = await Item.create({ name: 'Redrum Rosin', price: 40, type: 'Rosin' })

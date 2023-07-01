@@ -92,10 +92,17 @@ exports.updateItem = async (req, res) => {
 
 exports.deleteItem = async (req, res) => {
     try {
-        await Item.findOneAndDelete({'_id': req.params.id})
+        /* await Item.findOneAndDelete({'_id': req.params.id})
             .then(() => {
                 res.redirect('/items')
-            })
+            }) */
+        req.body.user = req.user._id
+        const cartItems = req.user.cart.items
+        const item = await cartItems.find(item => item._id == req.params.id)
+        const index = cartItems.indexOf(item)
+        cartItems.splice(index, 1)
+        await req.user.cart.save()
+        res.json(req.user.cart.items)
     }
     catch (error) {
         res.status(400).json({ message: error.message })
