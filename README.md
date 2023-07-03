@@ -1,8 +1,8 @@
 # Shopping Cart API
-** Unit 2 Solo Project for General Assembly Software Engineering Immersive**
+**Unit 2 Solo Project for General Assembly Software Engineering Immersive**
 
 ## Getting Started
-** How to run the shopping cart API on your own machine
+**How to run the shopping cart API on your own machine**
 
 ### How to Install This App on Your Local Machine
 
