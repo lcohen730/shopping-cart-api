@@ -15,13 +15,13 @@ exports.listCartItems = async (req, res) => {
             // console.log(cartItems)
             let subTotal = 0
             // foundCart.items.forEach(item => subTotal += item.price)
-            cartItems.forEach(item => subTotal += item.price * item.quantity)
+            cartItems.forEach(item => subTotal += (item.price * item.quantity))
             // res.render('items/Index', {
             // res.render('items', {    
             //     items: foundItems
             // })
             res.json({ cartItems, subTotal })
-            // console.log(req.user)
+            // console.log({ cartItems, subTotal })
             // res.json(req.user.cart)
         }
         else {
@@ -63,9 +63,9 @@ exports.updateItem = async (req, res) => {
             // console.log(update)
             // console.log(item[update])
             // console.log(req.body[update])
-            else {
+            /* else {
                 res.status(400).json('Bad request. Only quantity can be changed for an item in cart.')
-            }
+            } */
         })
         // await req.user.save()
         await req.user.cart.save()
