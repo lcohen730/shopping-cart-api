@@ -45,13 +45,13 @@ In your terminal (your working directory should still be the shopping cart API),
 * When logged in to your MongoDB Atlas account, within your selected project, make sure you are on the Database Deployments page.
 * Click on Connect, then Drivers.
 * Copy the connection string given in Step 3.
-* In your .env file, type "MONGO_URI=" and then paste the connection string you just copied. Replace <password> with the password you created for your database user. The string should look something like this: mongodb+srv://sei:<password>@sei-w0kys.azure.mongodb.net/myFirstDatabase?retryWrites=true . Instead of myFirstDatabase, you can name your cloned API whatever you would like. Just type the name you want right before the question mark in the string.
+* In your .env file, type "MONGO_URI=" and then paste the connection string you just copied. Replace <password> with the password you created for your database user. The string should look something like this: ```mongodb+srv://sei:<password>@sei-w0kys.azure.mongodb.net/myFirstDatabase?retryWrites=true```. Instead of myFirstDatabase, you can name your cloned API whatever you would like. Just type the name you want right before the question mark in the string.
 
 #### Secret
 * To use this API, you must come up with a secret of your choosing. It can be any word or combination of words.
 * Create a hash of you secret using a SHA256 generator like [this one](https://emn178.github.io/online-tools/sha256.html).
 * Copy the hash in the output box.
-* In your env file, on line 2, type "SECRET=" and then paste your hashed secret. It should look something like this: SECRET=2bb80d537b1da3e38bd30361aa855686bde0eacd7162fef6a25fe97bf527a25b .
+* In your env file, on line 2, type "SECRET=" and then paste your hashed secret. It should look something like this: ```SECRET=2bb80d537b1da3e38bd30361aa855686bde0eacd7162fef6a25fe97bf527a25b```.
 
 
 ### How to Start the App in Dev Mode
