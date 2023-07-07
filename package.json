@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "start": "node server.js",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "load": "artillery run artillery.yml"
   },
   "keywords": [],
   "author": "",

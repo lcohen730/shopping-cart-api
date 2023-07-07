@@ -33,7 +33,7 @@ router.put('/:id', userController.auth, userController.updateUser)
 // backend only functionality that is used to delete a user
 router.delete('/:id', userController.auth, userController.deleteUser)
 
-// Non-RESTful route to login a user
+// Non-RESTful route to logout a user
 router.post('/logout', userController.auth, userController.logoutUser)
 
 module.exports = router

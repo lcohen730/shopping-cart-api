@@ -1,0 +1,15 @@
+config:
+  target: 'http://localhost:3000'
+  phases:
+    - duration: 60
+      arrivalRate: 20
+scenarios:
+  - flow:
+      - post:
+          url: "/users"
+          json:
+            name: "Test"
+            email: "{{ $randomString() }}"
+            phone: "{{ $randomString() }}"
+            password: "Password123"
+            address: "1 Test Road"
