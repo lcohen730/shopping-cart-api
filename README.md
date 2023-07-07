@@ -61,7 +61,7 @@ In your terminal (your working directory should still be the shopping cart API),
 * Type "npm run dev" to start the app in dev mode. The server will be looking for your open Port 3000 and a working connection to your MongoDB database.
 * You will receive confirmation messages in the terminal when the port is listening successfully (the message will be "3000 points to Ravenclaw") and when your MongoDB database is successfully connected (the message will be "Advance to MonGO. Collect $200"). Feel free to change these messages in the server.js file.
 
-## How to Make an API Request in Postman (i.e what port, what url etc)
+## How to Make an API Request in Postman (Manually Test Your Routes)
 * To make an API request in Postman, make sure you are in a fresh tab, and type http://localhost:3000 in the url box, assuming you are using Port 3000.
 * You can test each route individually by adding the appropriate text to the end of the url. All routes are listed below, with their respective url appendages and type of request. A ":" before the appendage means that the route is dynamic, and when making the request, you should type the specific id, etc. of whatever you are trying to get, create, change, or delete.
 
@@ -85,4 +85,10 @@ In your terminal (your working directory should still be the shopping cart API),
 | **Delete an Item in Your Cart** | /cart/:id            | Delete                 |
 
 ## How to Run Automated Tests
+* In your terminal, make sure your working directory is the shopping cart API.
+* Type "npm run test" to run the automated tests.
+* You will know all tests passed when you see:
+    Test Suites: 3 passed, 3 total
+    Tests:       17 passed, 17 total
+
 ## How to Start the App without Dev Mode

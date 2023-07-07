@@ -1,19 +1,12 @@
-const User = require('../models/user');
 const Item = require('../models/item');
 const Cart = require('../models/cart');
-const jwt = require('jsonwebtoken');
 
 exports.listItems = async (req, res) => {
     try {
         const foundItems = await Item.find({});
-        // res.render('items/Index', {
-        // res.render('items', {    
-        //     items: foundItems
-        // })
         res.json(foundItems)
     }
     catch (error) {
-        // res.status(400).send({ message: error.message })
         res.status(400).json({ message: error.message })
     }
 }
@@ -64,31 +57,12 @@ exports.createItem = async (req, res) => {
 exports.showItem = async (req, res) => {
     try {
         const foundItem = await Item.findOne({_id: req.params.id})
-        // res.render('items/Show', {
-        // res.render('items', {
-        //     item: foundItem
-        // })
         res.json(foundItem)
     }
     catch (error) {
-        // res.status(400).send({ message: error.message })
         res.status(400).json({ message: error.message })
     }
 }
-
-/* exports.editItem = async (req, res) => {
-    try {
-        const foundItem = await Item.findOne({_id: req.params.id})
-        // res.render('items/Edit', {
-        // res.render('items', {
-        //     item: foundItem
-        // })
-        res.json(foundItem)
-    }
-    catch (error) {
-        res.status(400).send({ message: error.message })
-    }
-} */
 
 exports.updateItem = async (req, res) => {
     try {
@@ -173,11 +147,10 @@ exports.addToCart = async (req, res) => {
             /* .then(() => {
                 res.redirect('/cart/req.user.cart.id')
             }) */
-        console.log(req.user.cart.items)
+        // console.log(req.user.cart.items)
         res.json(req.user.cart.items)
     }
     catch (error) {
-        // res.status(400).send({ message: error.message })
         res.status(400).json({ message: error.message })
     }
 }
