@@ -84,54 +84,5 @@ In your terminal (your working directory should still be the shopping cart API),
 | **Update an Item in Your Cart** | /cart/:id            | Put                    |
 | **Delete an Item in Your Cart** | /cart/:id            | Delete                 |
 
-    <!-- * **Create a User**
-        * Url Appendage: /users
-        * Type of request: Post
-    * **List All Users**
-        * Url Appendage: /users
-        * Type of request: Post
-    * **Show a Specific User**
-        * Url Appendage: /users
-        * Type of request: Post
-    * **Login a User**
-        * Url Appendage: /users
-        * Type of request: Post
-    * **Update a User**
-        * Url Appendage: /users
-        * Type of request: Post
-    * **Delete a User**
-        * Url Appendage: /users
-        * Type of request: Post
-    * **Logout a User**
-        * Url Appendage: /users
-        * Type of request: Post
-    * **Create an Item**
-        * Url Appendage: /users
-        * Type of request: Post
-    * **List All Items**
-        * Url Appendage: /users
-        * Type of request: Post
-    * **Show a Specific Item**
-        * Url Appendage: /users
-        * Type of request: Post
-    * **Update an Item**
-        * Url Appendage: /users
-        * Type of request: Post
-    * **Delete an Item**
-        * Url Appendage: /users
-        * Type of request: Post
-    * **Add an Item to Your Cart**
-        * Url Appendage: /users
-        * Type of request: Post
-    * **List All Items in Your Cart**
-        * Url Appendage: /users
-        * Type of request: Post
-    * **Update an Item in Your Cart**
-        * Url Appendage: /users
-        * Type of request: Post
-    * **Delete an Item in Your Cart**
-        * Url Appendage: /users
-        * Type of request: Post -->
-
 ## How to Run Automated Tests
 ## How to Start the App without Dev Mode
