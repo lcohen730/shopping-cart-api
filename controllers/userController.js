@@ -22,20 +22,12 @@ exports.auth = async (req, res, next) => {
 exports.listUsers = async (req, res) => {
     try {
         const foundUsers = await User.find({});
-        // res.render('users/Index', {
-        // res.render('users', {    
-        //     users: foundUsers
-        // })
         res.json(foundUsers)
     }
     catch (error) {
         res.status(400).send({ message: error.message })
     }
 }
-
-/* exports.newUser = (req, res) => {
-    res.render('users/New')
-} */
 
 exports.createUser = async (req, res) => {
     try {
@@ -50,8 +42,6 @@ exports.createUser = async (req, res) => {
 }
 
 exports.loginUser = async (req, res) => {
-    // res.render('users/Login')
-    // res.json('users')
     try {
         const user = await User.findOne({ email: req.body.email });
         if (!user || !await bcrypt.compare(req.body.password, user.password)) {
@@ -72,30 +62,12 @@ exports.loginUser = async (req, res) => {
 exports.showUser = async (req, res) => {
     try {
         const foundUser = await User.findOne({_id: req.params.id})
-        // res.render('users/Show', {
-        // res.render('users', {
-        //     user: foundUser
-        // })
         res.json(foundUser)
     }
     catch (error) {
         res.status(400).send({ message: error.message })
     }
 }
-
-/* exports.editUser = async (req, res) => {
-    try {
-        const foundUser = await User.findOne({_id: req.params.id})
-        // res.render('users/Edit', {
-        // res.render('users', {
-        //     user: foundUser
-        // })
-        res.json(foundUser)
-    }
-    catch (error) {
-        res.status(400).send({ message: error.message })
-    }
-} */
 
 exports.updateUser = async (req, res) => {
     try {

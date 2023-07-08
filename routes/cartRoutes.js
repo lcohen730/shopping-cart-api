@@ -7,10 +7,6 @@ const cartController = require('../controllers/cartController');
 // list all items in cart
 router.get('/', userController.auth, cartController.listCartItems)
 
-// EDIT
-// show you a form that lets you edit the cart
-// router.get('/:id/edit', cartController.editItem)
-
 // UPDATE
 // backend only functionality that is used to update an item
 router.put('/:id', userController.auth, cartController.updateItem)

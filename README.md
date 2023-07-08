@@ -4,12 +4,18 @@
 ## Getting Started
 
 ### Global Installations Needed
+Before installing the app itself, you will need to install the following programs globally on your machine:
 
 #### Node.js
-Before installing the app itself, you will need to install node.js globally on your machine:
-* Node.js is a runtime environment that is used to execute JavaScript outside of the browser
+* Node.js is a runtime environment that is used to execute JavaScript outside of the browser.
 * If you have "homebrew" installed already, you can just type the command "brew install node" in your Terminal, and that will install node.js for you. To verify node.js is installed, type the command "node -v".
 * If you don't have homebrew, you can install the latest version of node.js by navigating to the [node.js website](https://nodejs.org/en) and clicking on the "current" button to download.
+* Node.js comes with npm, or node package manager, so you will be able to use the "npm i..." command for the rest of the installations.
+
+#### Nodemon
+* Nodemon is a tool that helps develop Node.js based applications by automatically restarting the node application when file changes in the directory are detected. This will be used when running the shopping cart API in dev mode.
+* After you have node.js, you can just type "npm i -g nodemon" anywhere within your terminal, and Nodemon will be installed globally on your machine.
+* The package.json file that you will install with the shopping cart API will have the dev mode already coded to be Nodemon, so there is no more work needed on your part.
 
 #### Postman
 You will need an app like Postman to manually test the API's routes. You can download Postman [here](https://www.postman.com/downloads/).
@@ -61,13 +67,20 @@ In your terminal (your working directory should still be the shopping cart API),
 * Type "npm run dev" to start the app in dev mode. The server will be looking for your open Port 3000 and a working connection to your MongoDB database.
 * You will receive confirmation messages in the terminal when the port is listening successfully (the message will be "3000 points to Ravenclaw") and when your MongoDB database is successfully connected (the message will be "Advance to MonGO. Collect $200"). Feel free to change these messages in the server.js file.
 
-## How to Make an API Request in Postman (Manually Test Your Routes)
-* To make an API request in Postman, make sure you are in a fresh tab, and type http://localhost:3000 in the url box, assuming you are using Port 3000.
-* You can test each route individually by adding the appropriate text to the end of the url. All routes are listed below, with their respective url appendages and type of request. A ":" before the appendage means that the route is dynamic, and when making the request, you should type the specific id, etc. of whatever you are trying to get, create, change, or delete.
+## How to Start the App without Dev Mode
+* In your terminal, make sure your working directory is the shopping cart API.
+* Type "npm start" to start the app without dev mode. Just like in dev mode, the server will be looking for your open Port 3000 and a working connection to your MongoDB database.
+* As in dev mode, you will receive confirmation messages in the terminal when the port is listening successfully  and when your MongoDB database is successfully connected.
 
-| Route Function                  | Url Appendage        | Type of HTTP Request   |
-| ------------------------------- | -------------------- | ---------------------- |
-| **Create a User**               | /users               | Post                   |
+## How to Make an API Request in Postman (Manually Test Your Routes)
+* To make an API request in Postman, you must first start the app (dev mode or not).
+* Open up Postman and make sure you are in a fresh tab.
+* Type http://localhost:3000 in the url box, assuming you are using Port 3000.
+* You can test each route individually by adding the appropriate text to the end of the url. All routes are listed below, with their respective url appendages, type of request, a template for JSON if needed, and whether or not authentication is required. A ":" before the appendage means that the route is dynamic, and when making the request, you should type the specific id, etc. of whatever you are trying to get, create, change, or delete.
+
+| Route Function                  | Url Appendage        | Type of HTTP Request   | JSON Template | Authentication Needed? |
+| ------------------------------- | -------------------- | ---------------------- | ------------------ | ------------------ |
+| **Create a User**               | /users               | Post                   | 
 | **List All Users**              | /users               | Get                    |
 | **Show a Specific User**        | /users/:id           | Get                    |
 | **Login a User**                | /users/login         | Post                   |
@@ -84,11 +97,40 @@ In your terminal (your working directory should still be the shopping cart API),
 | **Update an Item in Your Cart** | /cart/:id            | Put                    |
 | **Delete an Item in Your Cart** | /cart/:id            | Delete                 |
 
+* Once your url is typed with the appropriate appendage, select the respective request type in the drop-down menu to the left.
+* If the request uses JSON:
+    * Under the url bar, click on "Body".
+    * You will now see a gray drop-down that says "none". Click on that and change it to "raw".
+    * Click on the drop-down that says "Text" and change it to "JSON".
+    * Use the respective JSON template for that request and fill out at least the required fields.
+* If the request requires authentication:
+    * You must create a user before the desired request, which will create a token for you to use for authentication.
+    * After you submit the request to create a user, as part of the response, you will receive a string within your token object.
+    * Copy the string, minus the quotations.
+    * Under the url bar, where "Body" is selected, click on "Auth".
+    * Click the Type drop-down that says "No Auth" and select "Bearer Token".
+    * In the text box next to "Token", paste the token you copied earlier.
+    * You are all set with authentication for this request!
+* Press "Send" to submit the request.
+* Your response will be shown at the bottom of the window.=
+
 ## How to Run Automated Tests
 * In your terminal, make sure your working directory is the shopping cart API.
 * Type "npm run test" to run the automated tests.
 * You will know all tests passed when you see:
-    Test Suites: 3 passed, 3 total
-    Tests:       17 passed, 17 total
+    * Test Suites: 3 passed, 3 total
+    * Tests:       17 passed, 17 total
 
-## How to Start the App without Dev Mode
+## How to Run Artillery Tests
+* Artillery can be used to test the latency and throughput of your application.
+* In your terminal, you will need two windows open.
+* In your first window, start the app (dev mode or not).
+* In your second window, make sure your working directory is the shopping cart API.
+* Type "npm run load" to run the load test.
+* A successful load test will complete 100% of the scenarios launched - in this case, 1200 scenarios. This means throughput is maximized. The results will also give you an idea of how minimal your latency is with the mean response/sec and repsonse time results.
+
+## Project Planning?
+
+### Trello?
+### Icebox Items
+### Wireframes
