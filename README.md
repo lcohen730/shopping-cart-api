@@ -80,33 +80,33 @@ In your terminal (your working directory should still be the shopping cart API),
 
 | Route Function                    | Url Appendage        | Type of HTTP Request   | JSON Template                          | Authentication Needed? |
 | --------------------------------- | -------------------- | ---------------------- | -------------------------------------- | ---------------------- |
-| **Create a User**                 | /users               | Post                   | "name": String (required),             | No                     |
-|                                   |                      |                        | "email": String (required and unique), |                        |
-|                                   |                      |                        | "phone": String (required and unique), |                        |
-|                                   |                      |                        | "password": String (required),         |                        |  
-|                                   |                      |                        | "address": String (required)           |                        |  
+| **Create a User**                 | /users               | Post                   | "name": String (required),<br>                               
+                                                                                      "email": String (required and unique),<br> 
+                                                                                      "phone": String (required and unique),<br>
+                                                                                      "password": String (required),<br>           
+                                                                                      "address": String (required)           | No                     |
 | **List All Users**                | /users               | Get                    | N/A                                    | No                     |
 | **Show a Specific User**          | /users/:id           | Get                    | N/A                                    |                        |
 | **Login a User**                  | /users/login         | Post                   | "email": String (required)             | No                     |
-|                                   |                      |                        | "password": String (required)          |                        | 
+                                                                                      "password": String (required)                      
 | **Update a User**                 | /users/:id           | Put                    | Can update any part(s) of the user.    | Yes                    |
-|                                   |                      |                        | Ex. "name": "Bob"                      |                        |
+                                                                                      Ex. "name": "Bob"    
 | **Delete a User**                 | /users/:id           | Delete                 | N/A                                    | Yes                    |
 | **Logout a User**                 | /users/logout        | Post                   | N/A                                    | Yes                    |
 | **Create an Item**                | /items               | Post                   | "name": String (required),             | Yes                    |
-|                                   |                      |                        | "price": Number (required),            |                        |
-|                                   |                      |                        | "type": String (required)              |                        |  
+                                                                                      "price": Number (required),
+                                                                                      "type": String (required)                
 | **List All Items**                | /items               | Get                    | N/A                                    | No                     |
 | **Show a Specific Item**          | /items/:id           | Get                    | N/A                                    | No                     |
 | **Update an Item**                | /items/:id           | Put                    | Can update any part(s) of the item.    | Yes                    |
-|                                   |                      |                        | Ex. "price": 50,                       |                        |
-|                                   |                      |                        |     "type": "bow"                      |                        |
+                                                                                      Ex. "price": 50,
+                                                                                          "type": "bow"           
 | **Delete an Item**                | /items/:id           | Delete                 | N/A                                    | Yes                    |
 | **Add an Item to Your Cart**      | /items/:id           | Post                   | N/A                                    | Yes                    |
 | **List All Items in Your Cart**   | /cart                | Get                    | N/A                                    | Yes                    |
 | **Update an Item in Your Cart**   | /cart/:id            | Put                    | Can only update quantity.              | Yes                    |
-|                                   |                      |                        | "quantity": Number                     |                        |
-| **Delete an Item from Your Cart** | /cart/:id            | Delete                 | N/A                                    | Yes                    |
+                                                                                      "quantity": Number        
+| **Delete an Item from Your Cart** | /cart/:id            | Delete                 | N/A                                     | Yes                    |
 
 * Once your url is typed with the appropriate appendage, select the respective request type in the drop-down menu to the left.
 * If the request uses JSON:
