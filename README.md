@@ -129,8 +129,31 @@ In your terminal (your working directory should still be the shopping cart API),
 * Type "npm run load" to run the load test.
 * A successful load test will complete 100% of the scenarios launched - in this case, 1200 scenarios. This means throughput is maximized. The results will also give you an idea of how minimal your latency is with the mean response/sec and repsonse time results.
 
-## Project Planning?
+## Project Planning and Future Updates
 
-### Trello?
+### Trello
+API planning and organization was done with Trello, written in the form of user stories. Here is a screenshot of what my updated Trello board looks like:
+<img width="500" alt="Screenshot 2023-07-07 at 22 58 42" src="https://github.com/lcohen730/shopping-cart-api/assets/111040134/980f71f9-0142-4520-8b4a-3bba5685b04f">
+
+### Entity Relationship Diagram
+Pseudocode for this API was done using an ERD, or Entity Relationship Diagram, created with Lucidchart.
+![Shopping Cart ERD](https://github.com/lcohen730/shopping-cart-api/assets/111040134/ee8e05cf-5551-473c-9f7b-83c8c117008b)
+
 ### Icebox Items
+Additional features I would like to add to the backend functionality of this app:
+* Full implementation of a master or admin user, where the admin is the only one that can:
+    * View users other than their own
+    * Create, update, and delete items from the main part of the app
+* Ability to place an order, update or delete/cancel an order, and view past orders
+
 ### Wireframes
+Here are some wireframes I created to give an idea of what the app would look like on the front end:
+
+**Home Page**
+![Home_Page](https://github.com/lcohen730/shopping-cart-api/assets/111040134/da49ace5-bbdc-4894-96e9-127b44333f96)
+
+**Item Page**
+![Item_Page_Example](https://github.com/lcohen730/shopping-cart-api/assets/111040134/2c9cb65a-c1d9-4e2e-baec-3f9ba676bd17)
+
+**Cart Page**
+![Cart_Page](https://github.com/lcohen730/shopping-cart-api/assets/111040134/800b5f5e-bbde-490e-af9d-a781dae6c3dc)

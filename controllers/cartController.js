@@ -1,8 +1,8 @@
-const User = require('../models/user');
-const Item = require('../models/item');
-const Cart = require('../models/cart');
-const jwt = require('jsonwebtoken');
-const { showItem } = require('./itemController');
+// const User = require('../models/user');
+// const Item = require('../models/item');
+// const Cart = require('../models/cart');
+// const jwt = require('jsonwebtoken');
+// const { showItem } = require('./itemController');
 
 exports.listCartItems = async (req, res) => {
     try {
@@ -16,10 +16,6 @@ exports.listCartItems = async (req, res) => {
             let subTotal = 0
             // foundCart.items.forEach(item => subTotal += item.price)
             cartItems.forEach(item => subTotal += (item.price * item.quantity))
-            // res.render('items/Index', {
-            // res.render('items', {    
-            //     items: foundItems
-            // })
             res.json({ cartItems, subTotal })
             // console.log({ cartItems, subTotal })
             // res.json(req.user.cart)
@@ -33,20 +29,6 @@ exports.listCartItems = async (req, res) => {
         res.status(400).json({ message: error.message })
     }
 }
-
-/* exports.editItem = async (req, res) => {
-    try {
-        const foundItem = await Item.findOne({_id: req.params.id})
-        // res.render('items/Edit', {
-        // res.render('items', {
-        //     item: foundItem
-        // })
-        res.json(foundItem)
-    }
-    catch (error) {
-        res.status(400).send({ message: error.message })
-    }
-} */
 
 exports.updateItem = async (req, res) => {
     try {

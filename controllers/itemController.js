@@ -93,6 +93,7 @@ exports.addToCart = async (req, res) => {
     try {
         req.body.user = req.user._id
         const foundItem = await Item.findOne({_id: req.params.id})
+        // const foundItem = await Item.findOne({_id: req.params.id}).populate('items')
         if (req.user.cart) {
             // console.log(req.user)
             // req.user.cart.items.addToSet({ _id: foundItem._id })
@@ -103,7 +104,6 @@ exports.addToCart = async (req, res) => {
                 type: foundItem.type,
                 quantity: 1
             })
-            // req.user.cart.items.addToSet({ _id: foundItem._id, name: foundItem.name })
         }
         else {
             // console.log('cart doesnt exist')
