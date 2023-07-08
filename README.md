@@ -133,11 +133,13 @@ In your terminal (your working directory should still be the shopping cart API),
 
 ### Trello
 API planning and organization was done with Trello, written in the form of user stories. Here is a screenshot of what my updated Trello board looks like:
-<img width="500" alt="Screenshot 2023-07-07 at 22 58 42" src="https://github.com/lcohen730/shopping-cart-api/assets/111040134/980f71f9-0142-4520-8b4a-3bba5685b04f">
+
+<img width="900" alt="Screenshot 2023-07-07 at 22 58 42" src="https://github.com/lcohen730/shopping-cart-api/assets/111040134/980f71f9-0142-4520-8b4a-3bba5685b04f">
 
 ### Entity Relationship Diagram
 Pseudocode for this API was done using an ERD, or Entity Relationship Diagram, created with Lucidchart.
-![Shopping Cart ERD](https://github.com/lcohen730/shopping-cart-api/assets/111040134/ee8e05cf-5551-473c-9f7b-83c8c117008b)
+
+<img width="600" src="https://github.com/lcohen730/shopping-cart-api/assets/111040134/ee8e05cf-5551-473c-9f7b-83c8c117008b">
 
 ### Icebox Items
 Additional features I would like to add to the backend functionality of this app:
